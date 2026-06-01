@@ -1,0 +1,6 @@
+{
+  "name": "Vinayak Pandey Portfolio",
+  "description": "Premium cinematic dark-mode portfolio website for Vinayak Pandey, specializing in YouTube thumbnails, football edits, and creator branding.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
