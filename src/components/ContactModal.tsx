@@ -148,7 +148,7 @@ export function ContactModal() {
 
               <a
                 href={`mailto:${CONTACT.email}`}
-                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl liquid-glass-btn text-white font-bold text-lg hover:shadow-[0_0_30px_rgba(255,43,43,0.4)] active:scale-[0.98] transition-all duration-300 overflow-hidden relative group"
+                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-lg hover:shadow-[0_0_30px_rgba(255,43,43,0.4)] active:scale-[0.98] transition-all duration-300 overflow-hidden relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none" />
                 <Mail className="w-5 h-5 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]" />
@@ -160,7 +160,7 @@ export function ContactModal() {
                   href={CONTACT.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3.5 rounded-full liquid-glass-standard bg-black/40 border border-white/5 text-white/50 hover:border-primary/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,43,43,0.3)] hover:scale-110 active:scale-95 group"
+                  className="p-3.5 rounded-full bg-white/10 border border-white/20 text-white hover:border-primary/50 hover:bg-primary hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,43,43,0.3)] hover:scale-110 active:scale-95 group"
                 >
                   <Instagram className="w-5 h-5 group-hover:rotate-6 transition-transform duration-300" />
                 </a>
@@ -168,7 +168,7 @@ export function ContactModal() {
                   href={CONTACT.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3.5 rounded-full liquid-glass-standard bg-black/40 border border-white/5 text-white/50 hover:border-primary/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,43,43,0.3)] hover:scale-110 active:scale-95 group"
+                  className="p-3.5 rounded-full bg-white/10 border border-white/20 text-white hover:border-primary/50 hover:bg-primary hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,43,43,0.3)] hover:scale-110 active:scale-95 group"
                 >
                   <Twitter className="w-5 h-5 group-hover:rotate-6 transition-transform duration-300" />
                 </a>

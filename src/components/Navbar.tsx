@@ -93,7 +93,7 @@ export function Navbar() {
         />
 
         <div 
-          className={`relative z-10 transition-all duration-700 ease-in-out rounded-full px-6 md:px-8 flex items-center justify-between shadow-2xl shadow-black/80 ${
+          className={`relative z-10 transition-all duration-700 ease-in-out rounded-full px-3 sm:px-6 md:px-8 flex items-center justify-between shadow-2xl shadow-black/80 ${
             scrolled 
               ? 'h-14 bg-[rgba(5,5,5,0.7)] backdrop-blur-[30px] border border-white/5' 
               : 'h-16 liquid-glass-standard'
@@ -104,7 +104,7 @@ export function Navbar() {
           
           {/* Logo */}
           <MagneticItem>
-            <Link to="/" onClick={() => window.scrollTo(0,0)} className="text-xl md:text-2xl font-display font-bold tracking-tighter flex items-center gap-1 hover:scale-105 transition-transform duration-500">
+            <Link to="/" onClick={() => window.scrollTo(0,0)} className="text-lg sm:text-xl md:text-2xl font-display font-bold tracking-tighter flex items-center gap-1 hover:scale-105 transition-transform duration-500">
               <span className="text-white">VINAYAK</span> <span className="text-primary drop-shadow-[0_0_10px_rgba(255,43,43,0.5)]">PANDEY</span>
             </Link>
           </MagneticItem>
@@ -174,7 +174,7 @@ export function Navbar() {
             <MagneticItem>
               <button
                 onClick={openContactModal}
-                className="relative group overflow-hidden px-5 py-2.5 rounded-full text-sm font-bold text-white tracking-widest transition-all duration-500 hover:scale-105 active:scale-95 bg-primary/20 border border-primary/30 hover:border-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),_0_0_15px_rgba(255,43,43,0.2)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_0_30px_rgba(255,43,43,0.5)] flex items-center justify-center backdrop-blur-md"
+                className="relative group overflow-hidden px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold text-white tracking-widest transition-all duration-500 hover:scale-105 active:scale-95 bg-primary/20 border border-primary/30 hover:border-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),_0_0_15px_rgba(255,43,43,0.2)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.4),_0_0_30px_rgba(255,43,43,0.5)] flex items-center justify-center backdrop-blur-md"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none" />
                 <span className="relative z-10 uppercase drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]">

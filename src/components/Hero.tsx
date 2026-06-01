@@ -4,11 +4,11 @@ import { ArrowRight } from 'lucide-react';
 import React, { useRef, useEffect } from 'react';
 
 const APPS = [
-  { name: 'Ae', color: '#9999FF', baseLeft: '15%', baseTop: '20%', size: 52, delay: 0, depth: 'foreground', blur: 0, opacity: 0.8 },
-  { name: 'Ps', color: '#31A8FF', baseLeft: '85%', baseTop: '15%', size: 56, delay: 0.2, depth: 'foreground', blur: 0, opacity: 0.85 },
-  { name: 'Pr', color: '#EA77FF', baseLeft: '88%', baseTop: '55%', size: 44, delay: 0.4, depth: 'midground', blur: 1.5, opacity: 0.5 },
-  { name: 'Ai', color: '#FF9A00', baseLeft: '10%', baseTop: '60%', size: 48, delay: 0.1, depth: 'midground', blur: 1.5, opacity: 0.5 },
-  { name: 'Bl', color: '#EA7600', baseLeft: '75%', baseTop: '80%', size: 38, delay: 0.3, depth: 'background', blur: 3, opacity: 0.3 }, 
+  { name: 'Ae', color: '#9999FF', baseLeft: '15%', baseTop: '20%', mobileLeft: '15%', mobileTop: '80%', size: 52, delay: 0, depth: 'foreground', blur: 0, opacity: 0.8 },
+  { name: 'Ps', color: '#31A8FF', baseLeft: '85%', baseTop: '15%', mobileLeft: '85%', mobileTop: '75%', size: 56, delay: 0.2, depth: 'foreground', blur: 0, opacity: 0.85 },
+  { name: 'Pr', color: '#EA77FF', baseLeft: '88%', baseTop: '55%', mobileLeft: '80%', mobileTop: '20%', size: 44, delay: 0.4, depth: 'midground', blur: 1.5, opacity: 0.5 },
+  { name: 'Ai', color: '#FF9A00', baseLeft: '10%', baseTop: '60%', mobileLeft: '20%', mobileTop: '25%', size: 48, delay: 0.1, depth: 'midground', blur: 1.5, opacity: 0.5 },
+  { name: 'Bl', color: '#EA7600', baseLeft: '75%', baseTop: '80%', mobileLeft: '50%', mobileTop: '85%', size: 38, delay: 0.3, depth: 'background', blur: 3, opacity: 0.3 }, 
 ];
 
 type FloatingAppProps = {
@@ -61,18 +61,20 @@ function FloatingApp({
         stiffness: 80, 
         damping: 25 
       }}
-      className={`absolute z-0 flex items-center justify-center cursor-pointer group ${app.depth === 'foreground' ? 'flex' : app.depth === 'midground' ? 'hidden sm:flex' : 'hidden md:flex'}`}
+      className={`absolute z-0 flex items-center justify-center cursor-pointer group floating-app-responsive`}
       style={{
         width: app.size,
         height: app.size,
-        top: app.baseTop,
-        left: app.baseLeft,
+        '--top-md': app.baseTop,
+        '--left-md': app.baseLeft,
+        '--top-sm': app.mobileTop || app.baseTop,
+        '--left-sm': app.mobileLeft || app.baseLeft,
         marginLeft: -app.size / 2,
         marginTop: -app.size / 2,
         x: springX,
         y: springY,
         filter: `blur(${app.blur}px)`
-      }}
+      } as any}
       whileHover={{ 
         opacity: 1, 
         filter: 'blur(0px)', 
@@ -190,11 +192,24 @@ export function Hero() {
       </div>
 
       {/* Floating software icons aesthetic (pseudo-elements or small images can go here) */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-[bounce_2s_infinite] opacity-50">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-[bounce_2s_infinite] opacity-50 z-20">
         <div className="w-6 h-10 border-2 border-text-muted rounded-full flex justify-center pt-2">
           <div className="w-1.5 h-3 bg-text-muted rounded-full"></div>
         </div>
       </div>
+
+      <style>{`
+        .floating-app-responsive {
+          top: var(--top-sm);
+          left: var(--left-sm);
+        }
+        @media (min-width: 768px) {
+          .floating-app-responsive {
+            top: var(--top-md);
+            left: var(--left-md);
+          }
+        }
+      `}</style>
 
     </section>
   );
