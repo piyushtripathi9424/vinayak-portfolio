@@ -9,6 +9,7 @@ import { ContactModal } from './components/ContactModal';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { WorkPage } from './pages/WorkPage';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
             </div>
           </div>
         </div>
+        <Analytics />
       </div>
     </UIProvider>
   );
