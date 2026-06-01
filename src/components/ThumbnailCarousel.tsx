@@ -99,29 +99,11 @@ export function ThumbnailCarousel() {
         <div className="absolute top-0 left-0 bottom-0 w-20 md:w-64 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 right-0 bottom-0 w-20 md:w-64 bg-gradient-to-l from-[#050505] via-[#050505]/70 to-transparent z-10 pointer-events-none" />
 
-        {/* ==================== ROW 3: BACKGROUND LAYER ==================== */}
-        <div className="w-full overflow-hidden">
-          <div className="flex gap-12 md:gap-16 w-max animate-[scroll-right_110s_linear_infinite] hover:[animation-play-state:paused] will-change-transform opacity-20 pointer-events-none">
-            {[...THUMBNAILS.slice(10), ...THUMBNAILS.slice(10), ...THUMBNAILS.slice(10)].map((src, idx) => (
-              <div
-                key={`r3-${idx}`}
-                className="relative w-[280px] h-[158px] md:w-[460px] md:h-[259px] rounded-xl overflow-hidden bg-black/40 border border-white/5 flex-shrink-0"
-              >
-                <img
-                  src={src}
-                  alt="Background Thumbnail layer"
-                  className="w-full h-full object-cover grayscale opacity-70"
-                  loading="lazy"
-                  draggable={false}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* ==================== ROW 2: MIDGROUND LAYER ==================== */}
         <div className="w-full overflow-hidden">
-          <div className="flex gap-8 md:gap-10 w-max animate-[scroll-left_75s_linear_infinite] hover:[animation-play-state:paused] will-change-transform opacity-60">
+          <div className="flex gap-8 md:gap-10 w-max animate-[scroll-left_75s_linear_infinite] hover:[animation-play-state:paused] will-change-transform">
             {[...THUMBNAILS.slice(5, 10), ...THUMBNAILS.slice(5, 10), ...THUMBNAILS.slice(5, 10)].map((src, idx) => (
               <motion.div
                 key={`r2-${idx}`}

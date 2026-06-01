@@ -122,10 +122,10 @@ export function Pricing() {
                     initial={false}
                     animate={{
                       scale: isCenter ? 1.08 : 0.82,
-                      x: isCenter ? '0%' : isLeft ? '-70%' : '70%',
+                      x: isCenter ? '0%' : isLeft ? '-105%' : '105%',
                       z: isCenter ? 50 : 0,
                       opacity: isCenter ? 1 : 0.4,
-                      filter: `blur(${isCenter ? '0px' : '6px'})`,
+                      filter: `blur(${isCenter ? '0px' : '4px'})`,
                     }}
                     transition={{
                       duration: 0.65,
@@ -194,7 +194,7 @@ export function Pricing() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="absolute top-1/2 -translate-y-1/2 w-full max-w-[1200px] flex justify-between px-2 md:px-8 pointer-events-none z-40 hidden sm:flex">
+          <div className="absolute top-1/2 -translate-y-1/2 w-full max-w-[1200px] flex justify-between px-2 md:px-8 pointer-events-none z-40">
             <button
               onClick={prevSlide}
               className="pointer-events-auto w-14 h-14 rounded-full liquid-glass-standard flex items-center justify-center text-white hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"

@@ -49,28 +49,11 @@ export function PosterGallery() {
         <div className="absolute top-0 left-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 right-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-black via-black/70 to-transparent z-10 pointer-events-none" />
 
-        {/* ==================== ROW 3: ARTISTIC BACKGROUND LAYER ==================== */}
-        <div className="w-full overflow-hidden">
-          <div className="flex gap-14 md:gap-20 w-max animate-[scroll-right_120s_linear_infinite] hover:[animation-play-state:paused] will-change-transform opacity-30 blur-[6px] pointer-events-none">
-            {row3Count.map((src, idx) => (
-              <div
-                key={`p3-${idx}`}
-                className="relative w-[180px] h-[254px] md:w-[300px] md:h-[424px] rounded-2xl overflow-hidden bg-black/40 border border-white/5 flex-shrink-0"
-              >
-                <img
-                  src={src}
-                  alt="Background Poster artwork"
-                  className="w-full h-full object-cover grayscale opacity-60"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* ==================== ROW 2: ARTISTIC MIDGROUND LAYER ==================== */}
         <div className="w-full overflow-hidden">
-          <div className="flex gap-10 md:gap-12 w-max animate-[scroll-left_85s_linear_infinite] hover:[animation-play-state:paused] will-change-transform opacity-60 blur-[2px]">
+          <div className="flex gap-10 md:gap-12 w-max animate-[scroll-left_85s_linear_infinite] hover:[animation-play-state:paused] will-change-transform">
             {row2Count.map((src, idx) => (
               <motion.div
                 key={`p2-${idx}`}

@@ -124,23 +124,23 @@ export function ContactModal() {
             </div>
 
             <div className="space-y-4 relative z-10">
-              <div className="p-4 rounded-xl liquid-glass-standard bg-black/40 border border-white/5 flex items-center justify-between">
-                <span className="text-lg font-medium text-white/90 truncate mr-4">
+              <div className="p-4 rounded-xl bg-black/80 border border-white/20 flex items-center justify-between shadow-inner shadow-black/50">
+                <span className="text-lg font-bold text-white truncate mr-4">
                   {CONTACT.email}
                 </span>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary/50 text-white transition-all duration-300 group hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] active:scale-95"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 hover:border-primary/50 text-white transition-all duration-300 group hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] active:scale-95"
                 >
                   {copied ? (
                     <>
                       <Check className="w-4 h-4 text-green-400 drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]" />
-                      <span className="text-sm font-medium text-green-400">Copied</span>
+                      <span className="text-sm font-bold text-green-400">Copied</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4 text-white/50 group-hover:text-primary transition-colors" />
-                      <span className="text-sm font-medium">Copy</span>
+                      <Copy className="w-4 h-4 text-white group-hover:text-primary transition-colors" />
+                      <span className="text-sm font-bold text-white">Copy</span>
                     </>
                   )}
                 </button>
