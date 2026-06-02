@@ -9,6 +9,7 @@ import { ContactModal } from './components/ContactModal';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { WorkPage } from './pages/WorkPage';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <MouseGlow />
         <div className="relative z-10">
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/work" element={<WorkPage />} />
