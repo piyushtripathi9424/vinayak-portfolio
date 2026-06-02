@@ -82,12 +82,12 @@ export function ContactModal() {
             className="absolute inset-0 bg-[#050505]/70"
           >
             {/* Ambient Radial Lighting on Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.4 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
-              className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none" 
+              className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none"
             />
           </motion.div>
 
@@ -100,17 +100,17 @@ export function ContactModal() {
             className="relative w-full max-w-lg liquid-glass-strong rounded-3xl p-8 overflow-hidden border border-white/10 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8),_0_0_30px_rgba(255,43,43,0.2)] bg-black/60"
           >
             {/* Inner Glow Effects */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 1 }}
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-primary/25 blur-[60px] rounded-full pointer-events-none mix-blend-screen" 
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-primary/25 blur-[60px] rounded-full pointer-events-none mix-blend-screen"
             />
 
             <MagneticCloseButton onClick={closeContactModal} />
 
             <div className="text-center relative z-10 pt-4 pb-8">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: 'spring', delay: 0.1, stiffness: 200, damping: 20 }}
