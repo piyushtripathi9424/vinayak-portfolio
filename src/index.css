@@ -72,8 +72,8 @@ h1, h2, h3, h4, h5, h6 {
 .liquid-glass-strong {
   background: rgba(255, 255, 255, 0.02);
   background-blend-mode: luminosity;
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(var(--glass-blur, 30px));
+  -webkit-backdrop-filter: blur(var(--glass-blur, 30px));
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 0 30px rgba(255, 43, 43, 0.15);
   position: relative;
 }
@@ -144,6 +144,13 @@ h1, h2, h3, h4, h5, h6 {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.modal-backdrop-blur {
+  backdrop-filter: blur(var(--backdrop-blur, 0px));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur, 0px));
+  background-color: rgba(5, 5, 5, var(--backdrop-alpha, 0));
+  transform: translateZ(0);
 }
 
 .text-gradient {

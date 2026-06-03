@@ -72,29 +72,36 @@ export function ContactModal() {
     <AnimatePresence>
       {isContactModalOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Backdrop with cinematic blur dissolve */}
+          {/* Static Backdrop animating CSS Variables */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            initial={{ '--backdrop-blur': '0px', '--backdrop-alpha': 0 } as any}
+            animate={{ '--backdrop-blur': '24px', '--backdrop-alpha': 0.7 } as any}
+            exit={{ '--backdrop-blur': '0px', '--backdrop-alpha': 0 } as any}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             onClick={closeContactModal}
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 modal-backdrop-blur"
           >
-            {/* The blur is applied to a static inner div with hardware acceleration to prevent WebKit drop-out bugs */}
-            <div className="absolute inset-0 bg-[#050505]/70 backdrop-blur-2xl [transform:translateZ(0)]" />
-            
             {/* Ambient Radial Lighting on Backdrop */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none" />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.4 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none"
+            />
           </motion.div>
 
-          {/* Modal Content */}
+          {/* Modal Content - animating its own opacity and CSS blur variable for super smooth entry */}
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.3, ease: 'easeIn' } }}
-            transition={{ type: 'spring', stiffness: 120, damping: 18, mass: 0.8 }}
-            className="relative w-full max-w-lg liquid-glass-strong rounded-3xl p-8 overflow-hidden border border-white/10 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8),_0_0_30px_rgba(255,43,43,0.2)] bg-black/60"
+            initial={{ '--glass-blur': '0px', opacity: 0, y: 30, scale: 0.92 } as any}
+            animate={{ '--glass-blur': '30px', opacity: 1, y: 0, scale: 1 } as any}
+            exit={{ '--glass-blur': '0px', opacity: 0, scale: 0.96, transition: { duration: 0.3, ease: 'easeIn' } } as any}
+            transition={{ 
+              opacity: { duration: 0.4, ease: "easeOut" },
+              '--glass-blur': { duration: 0.4, ease: "easeOut" },
+              default: { type: 'spring', stiffness: 120, damping: 18, mass: 0.8 }
+            }}
+            className="relative w-full max-w-lg liquid-glass-strong rounded-3xl p-8 overflow-hidden border border-white/10 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8),_0_0_30px_rgba(255,43,43,0.2)] bg-black/60 z-10"
           >
             {/* Inner Glow Effects */}
             <motion.div
