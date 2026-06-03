@@ -77,18 +77,15 @@ export function ContactModal() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            transition={{ duration: 0.4 }}
             onClick={closeContactModal}
-            className="absolute inset-0 bg-[#050505]/70 backdrop-blur-2xl"
+            className="absolute inset-0 z-0"
           >
+            {/* The blur is applied to a static inner div with hardware acceleration to prevent WebKit drop-out bugs */}
+            <div className="absolute inset-0 bg-[#050505]/70 backdrop-blur-2xl [transform:translateZ(0)]" />
+            
             {/* Ambient Radial Lighting on Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.4 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.8 }}
-              className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none"
-            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none" />
           </motion.div>
 
           {/* Modal Content */}
