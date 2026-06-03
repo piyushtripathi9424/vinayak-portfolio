@@ -37,7 +37,7 @@ function MagneticCloseButton({ onClick }: { onClick: () => void }) {
       style={{ x: springX, y: springY }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="absolute top-6 right-6 p-2 rounded-full liquid-glass-standard border border-white/10 hover:border-primary/50 text-white/50 hover:text-white transition-colors duration-300 z-50 group hover:shadow-[0_0_15px_rgba(255,43,43,0.3)] bg-black/40 backdrop-blur-md"
+      className="absolute top-3 left-1 p-2.5 rounded-full liquid-glass-standard border border-white/10 hover:border-primary/50 text-white/50 hover:text-white transition-colors duration-300 z-50 group hover:shadow-[0_0_15px_rgba(255,43,43,0.3)] bg-black/40 backdrop-blur-md"
     >
       <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
       <X className="w-5 h-5 relative z-10" />
@@ -74,12 +74,12 @@ export function ContactModal() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop with cinematic blur dissolve */}
           <motion.div
-            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
-            animate={{ opacity: 1, backdropFilter: 'blur(16px)' }}
-            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             onClick={closeContactModal}
-            className="absolute inset-0 bg-[#050505]/70"
+            className="absolute inset-0 bg-[#050505]/70 backdrop-blur-2xl"
           >
             {/* Ambient Radial Lighting on Backdrop */}
             <motion.div
