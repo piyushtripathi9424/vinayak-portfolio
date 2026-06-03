@@ -96,7 +96,7 @@ export function ContactModal() {
             initial={{ '--glass-blur': '0px', opacity: 0, y: 30, scale: 0.92 } as any}
             animate={{ '--glass-blur': '30px', opacity: 1, y: 0, scale: 1 } as any}
             exit={{ '--glass-blur': '0px', opacity: 0, scale: 0.96, transition: { duration: 0.3, ease: 'easeIn' } } as any}
-            transition={{ 
+            transition={{
               opacity: { duration: 0.4, ease: "easeOut" },
               '--glass-blur': { duration: 0.4, ease: "easeOut" },
               default: { type: 'spring', stiffness: 120, damping: 18, mass: 0.8 }
