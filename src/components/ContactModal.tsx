@@ -83,8 +83,8 @@ export function ContactModal() {
               position: 'absolute',
               inset: 0,
               background: 'rgba(20, 20, 20, 0.55)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
+              backdropFilter: 'blur(64px)',
+              WebkitBackdropFilter: 'blur(64px)',
               zIndex: 0,
             }}
           >
@@ -95,7 +95,7 @@ export function ContactModal() {
           {/* Modal Content - animating its own opacity and CSS blur variable for super smooth entry */}
           <motion.div
             initial={{ '--glass-blur': '0px', opacity: 0, y: 30, scale: 0.92 } as any}
-            animate={{ '--glass-blur': '30px', opacity: 1, y: 0, scale: 1 } as any}
+            animate={{ '--glass-blur': '60px', opacity: 1, y: 0, scale: 1 } as any}
             exit={{ '--glass-blur': '0px', opacity: 0, scale: 0.96, transition: { duration: 0.3, ease: 'easeIn' } } as any}
             transition={{
               opacity: { duration: 0.4, ease: "easeOut" },
