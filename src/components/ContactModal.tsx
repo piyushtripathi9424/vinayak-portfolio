@@ -71,24 +71,18 @@ export function ContactModal() {
   return (
     <AnimatePresence>
       {isContactModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* Static Backdrop animating CSS Variables */}
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
+          {/* Static Backdrop with Safari Fix */}
           <motion.div
-            initial={{ '--backdrop-blur': '0px', '--backdrop-alpha': 0 } as any}
-            animate={{ '--backdrop-blur': '24px', '--backdrop-alpha': 0.7 } as any}
-            exit={{ '--backdrop-blur': '0px', '--backdrop-alpha': 0 } as any}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
             onClick={closeContactModal}
-            className="absolute inset-0 z-0 modal-backdrop-blur"
+            className="contact-modal-backdrop z-0"
           >
             {/* Ambient Radial Lighting on Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.4 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none"
-            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none opacity-40" />
           </motion.div>
 
           {/* Modal Content - animating its own opacity and CSS blur variable for super smooth entry */}
