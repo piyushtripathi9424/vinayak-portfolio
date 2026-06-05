@@ -151,13 +151,6 @@ h6 {
   scrollbar-width: none;
 }
 
-.contact-modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(20, 20, 20, 0.45);  /* must not be fully transparent */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);  /* critical for Safari */
-}
 
 .text-gradient {
   background: linear-gradient(180deg, #F5F5F5 0%, #BDBDBD 100%);

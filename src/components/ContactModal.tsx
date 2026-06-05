@@ -79,7 +79,14 @@ export function ContactModal() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
             onClick={closeContactModal}
-            className="contact-modal-backdrop z-0"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(20, 20, 20, 0.55)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              zIndex: 0,
+            }}
           >
             {/* Ambient Radial Lighting on Backdrop */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none opacity-40" />
