@@ -82,9 +82,9 @@ export function ContactModal() {
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'rgba(5, 5, 5, 0.75)',
-              backdropFilter: 'blur(40px)',
-              WebkitBackdropFilter: 'blur(40px)',
+              backdropFilter: 'blur(80px)',
+              WebkitBackdropFilter: 'blur(80px)',
+              background: 'rgba(5, 5, 5, 1)',
               zIndex: 0,
             }}
           >
