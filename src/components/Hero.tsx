@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'moti
 import { useUI } from '../contexts/UIContext';
 import { ArrowRight } from 'lucide-react';
 import React, { useRef, useEffect } from 'react';
-import profilePic from '../logo/web pfp.jpg';
+import profilePic from '../logo/JAKE.png';
 
 const CAROUSEL_ICONS = [
   { name: 'Illustrator', src: 'https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg' },

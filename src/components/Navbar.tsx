@@ -4,6 +4,7 @@ import { NAV_LINKS, CONTACT } from '../data';
 import { Instagram, Twitter } from 'lucide-react';
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import jakeLogo from '../logo/JAKE.png';
 
 function MagneticItem({ children, className, onClick }: { children: React.ReactNode, className?: string, onClick?: (e: React.MouseEvent) => void }) {
   const ref = useRef<HTMLDivElement>(null);
