@@ -81,15 +81,15 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center justify-center font-display font-extrabold tracking-tight leading-[0.9] mb-10"
+          className="flex flex-col items-center justify-center font-display font-extrabold tracking-tight leading-[0.9] mb-10 w-full"
         >
-          <span className="text-6xl sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 drop-shadow-lg">
+          <span className="text-[12vw] sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 drop-shadow-lg whitespace-nowrap">
             CRAFTING
           </span>
-          <span className="text-6xl sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-r from-[#FF2B2B] via-[#FF8A8A] to-[#FF2B2B] drop-shadow-[0_0_40px_rgba(255,43,43,0.4)] animate-gradient-x bg-[length:200%_auto]">
+          <span className="text-[12vw] sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-r from-[#FF2B2B] via-[#FF8A8A] to-[#FF2B2B] drop-shadow-[0_0_40px_rgba(255,43,43,0.4)] animate-gradient-x bg-[length:200%_auto] whitespace-nowrap">
             ELITE VISUALS
           </span>
-          <span className="text-6xl sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/30 drop-shadow-lg">
+          <span className="text-[12vw] sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-b from-white/90 to-white/30 drop-shadow-lg whitespace-nowrap">
             FOR CREATORS
           </span>
         </motion.div>
@@ -104,17 +104,17 @@ export function Hero() {
           {/* Subtle glowing accent line on top */}
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-          <p className="text-lg md:text-2xl lg:text-3xl text-white/40 leading-[1.6] font-medium text-center">
-            Helping <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all hover:text-white/80 cursor-default">top creators</span>, <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all hover:text-white/80 cursor-default">football pages</span>, and <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] transition-all hover:text-white/80 cursor-default">brands</span>
-            <br className="hidden md:block" />
-            <span className="relative inline-block mx-2 my-2 md:my-1 group cursor-default">
-              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ff8a8a] to-primary font-bold tracking-wide animate-gradient-x bg-[length:200%_auto]">
-                dominate the feed
-              </span>
-              <span className="absolute inset-x-0 bottom-1 h-3 bg-primary/20 -z-10 blur-[6px] group-hover:bg-primary/40 transition-all duration-500"></span>
+          <div className="text-sm sm:text-base md:text-2xl lg:text-3xl text-white/40 leading-relaxed font-medium text-center w-full max-w-[90vw] mx-auto overflow-hidden">
+            Helping <span className="text-white drop-shadow-md">top creators</span>, <span className="text-white drop-shadow-md">football pages</span>, and <span className="text-white drop-shadow-md">brands</span>
+            <br className="md:hidden" />
+            {' '}
+            <span className="inline md:inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ff8a8a] to-primary font-bold tracking-wide animate-gradient-x bg-[length:200%_auto]">
+              dominate the feed
             </span>
-            with premium, click-driven aesthetics.
-          </p>
+            <br className="md:hidden" />
+            {' '}
+            <span>with premium, click-driven aesthetics.</span>
+          </div>
 
           {/* Subtle glowing accent line on bottom */}
           <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
