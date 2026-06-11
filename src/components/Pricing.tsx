@@ -145,8 +145,37 @@ export function Pricing() {
                         : 'liquid-glass-standard'
                     }`}>
                       {pkg.popular && isCenter && (
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white font-bold text-sm tracking-widest uppercase px-4 py-1.5 rounded-full shadow-[0_0_20px_rgba(255,43,43,0.5)] whitespace-nowrap">
-                          Most Popular
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            zIndex: 10,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          {/* Solid bg block to mask the card border line */}
+                          <div
+                            style={{
+                              position: 'absolute',
+                              left: '-16px',
+                              right: '-16px',
+                              top: '50%',
+                              transform: 'translateY(-50%)',
+                              height: '3px',
+                              background: '#0E0E0E',
+                              zIndex: -1,
+                            }}
+                          />
+                          <div
+                            className="bg-primary text-white font-bold text-sm tracking-widest uppercase rounded-full shadow-[0_0_20px_rgba(255,43,43,0.5)] whitespace-nowrap"
+                            style={{ padding: '6px 18px' }}
+                          >
+                            Most Popular
+                          </div>
                         </div>
                       )}
                       

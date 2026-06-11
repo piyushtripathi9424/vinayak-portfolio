@@ -19,7 +19,7 @@ export function Hero() {
   const containerRef = useRef<HTMLElement>(null);
 
   return (
-    <section ref={containerRef} id="home" className="relative min-h-[100svh] flex items-center justify-center pt-24 overflow-hidden">
+    <section ref={containerRef} id="home" className="relative min-h-[100svh] flex items-center justify-center pt-24 pb-0 overflow-hidden">
 
       {/* Background glow effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[800px] h-[500px] bg-primary/20 blur-[150px] rounded-[100%] pointer-events-none mix-blend-screen" />
@@ -30,7 +30,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_70%,transparent_100%)]" />
 
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 text-center pb-16">
 
         {/* God-Level Avatar Orb */}
         <motion.div
@@ -167,7 +167,6 @@ export function Hero() {
         </motion.div>
 
       </div>
-
 
 
       <style>{`
