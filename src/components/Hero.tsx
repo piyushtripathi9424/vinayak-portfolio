@@ -1,7 +1,7 @@
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'motion/react';
+import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { useUI } from '../contexts/UIContext';
 import { ArrowRight } from 'lucide-react';
-import React, { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import profilePic from '../logo/JAKE.png';
 
 const CAROUSEL_ICONS = [
@@ -13,39 +13,66 @@ const CAROUSEL_ICONS = [
   { name: 'Figma', src: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg' },
 ];
 
-
 export function Hero() {
   const { openContactModal } = useUI();
   const containerRef = useRef<HTMLElement>(null);
 
+  // Parallax: track scroll progress within this section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20, mass: 0.5 });
+
+  // Background glow drifts DOWN (parallax depth — slower than scroll)
+  const glowY       = useTransform(smoothProgress, [0, 1], ['0%', '40%']);
+  const glowOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
+
+  // Grid rises and fades
+  const gridY       = useTransform(smoothProgress, [0, 1], ['0%', '-15%']);
+  const gridOpacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
+
+  // Content rises (foreground, slightly faster)
+  const contentY       = useTransform(smoothProgress, [0, 1], ['0%', '-20%']);
+  const contentOpacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
+
   return (
     <section ref={containerRef} id="home" className="relative min-h-[100svh] flex items-center justify-center pt-24 pb-0 overflow-hidden">
 
-      {/* Background glow effects */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[800px] h-[500px] bg-primary/20 blur-[150px] rounded-[100%] pointer-events-none mix-blend-screen" />
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-primary/10 to-transparent blur-[80px] pointer-events-none mix-blend-screen opacity-50" />
+      {/* Background glow — drifts down on scroll */}
+      <motion.div
+        style={{ y: glowY, opacity: glowOpacity }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[800px] h-[500px] bg-primary/20 blur-[150px] rounded-[100%] pointer-events-none mix-blend-screen"
+      />
+      <motion.div
+        style={{ opacity: glowOpacity }}
+        className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-primary/10 to-transparent blur-[80px] pointer-events-none mix-blend-screen opacity-50"
+      />
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
-      {/* Grid overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_70%,transparent_100%)]" />
+      {/* Grid overlay — rises and fades on scroll */}
+      <motion.div
+        style={{ y: gridY, opacity: gridOpacity }}
+        className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_70%,transparent_100%)]"
+      />
 
+      {/* Content — foreground parallax */}
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 text-center pb-16"
+      >
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 text-center pb-16">
-
-        {/* God-Level Avatar Orb */}
+        {/* Avatar Orb */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto mb-10 mt-12 group w-32 h-32 md:w-44 md:h-44"
         >
-          {/* Animated rings */}
           <div className="absolute inset-0 -m-6 rounded-full border border-primary/30 animate-[spin_10s_linear_infinite]" style={{ borderStyle: 'dashed' }} />
           <div className="absolute inset-0 -m-3 rounded-full border border-white/10 animate-[spin_15s_linear_infinite_reverse]" />
-
-          {/* Intense Core Glow */}
           <div className="absolute inset-0 rounded-full bg-primary/40 blur-[40px] mix-blend-screen opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
-
           <div className="relative w-full h-full rounded-full overflow-hidden border border-white/20 shadow-[0_0_50px_rgba(255,43,43,0.3)] bg-white/[0.02] backdrop-blur-md p-1">
             <div className="w-full h-full rounded-full overflow-hidden relative">
               <img
@@ -53,14 +80,13 @@ export function Hero() {
                 alt="Vinayak"
                 className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
               />
-              {/* Inner glass reflection */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent pointer-events-none" />
               <div className="absolute inset-0 rounded-full bg-gradient-to-b from-black/20 to-black/80 pointer-events-none opacity-40 mix-blend-overlay" />
             </div>
           </div>
         </motion.div>
 
-        {/* Visual Strategy Pill */}
+        {/* Status Pill */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,7 +98,7 @@ export function Hero() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
           </span>
           <span className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-white/90">
-            Visual Strategy & Creative Direction
+            Visual Strategy &amp; Creative Direction
           </span>
         </motion.div>
 
@@ -94,16 +120,14 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Overpowered Subtitle */}
+        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
           className="relative max-w-4xl mx-auto mb-16 px-4"
         >
-          {/* Subtle glowing accent line on top */}
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-
           <div className="text-sm sm:text-base md:text-2xl lg:text-3xl text-white/40 leading-relaxed font-medium text-center w-full max-w-[90vw] mx-auto overflow-hidden">
             Helping <span className="text-white drop-shadow-md">top creators</span>, <span className="text-white drop-shadow-md">football pages</span>, and <span className="text-white drop-shadow-md">brands</span>
             <br className="md:hidden" />
@@ -115,12 +139,10 @@ export function Hero() {
             {' '}
             <span>with premium, click-driven aesthetics.</span>
           </div>
-
-          {/* Subtle glowing accent line on bottom */}
           <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
         </motion.div>
 
-        {/* Infinite Auto-Scrolling Carousel */}
+        {/* Tool Icons Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,6 +170,7 @@ export function Hero() {
           </div>
         </motion.div>
 
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -166,38 +189,19 @@ export function Hero() {
           </button>
         </motion.div>
 
-      </div>
-
+      </motion.div>
 
       <style>{`
-        .floating-app-responsive {
-          top: var(--top-sm);
-          left: var(--left-sm);
-        }
-        @media (min-width: 768px) {
-          .floating-app-responsive {
-            top: var(--top-md);
-            left: var(--left-md);
-          }
-        }
         @keyframes infinite-scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
         }
         .animate-infinite-scroll {
           animation: infinite-scroll 40s linear infinite;
         }
         @keyframes gradient-x {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
         }
         .animate-gradient-x {
           animation: gradient-x 6s ease infinite;
