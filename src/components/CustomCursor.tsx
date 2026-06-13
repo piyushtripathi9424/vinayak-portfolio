@@ -2,69 +2,68 @@ import { motion, useMotionValue, useSpring } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 export function CustomCursor() {
-  const cursorX = useMotionValue(-200);
-  const cursorY = useMotionValue(-200);
+  // Raw motion values — updated directly from mousemove, zero re-renders
+  const mouseX = useMotionValue(-200);
+  const mouseY = useMotionValue(-200);
 
-  // Dot follows exactly (very stiff)
-  const dotX = useSpring(cursorX, { stiffness: 800, damping: 40, mass: 0.2 });
-  const dotY = useSpring(cursorY, { stiffness: 800, damping: 40, mass: 0.2 });
+  // Dot: very tight spring — feels almost instant but avoids micro-jitter
+  const dotX = useSpring(mouseX, { stiffness: 2000, damping: 80, mass: 0.05 });
+  const dotY = useSpring(mouseY, { stiffness: 2000, damping: 80, mass: 0.05 });
 
-  // Ring follows with lag (loose spring)
-  const ringX = useSpring(cursorX, { stiffness: 120, damping: 18, mass: 0.6 });
-  const ringY = useSpring(cursorY, { stiffness: 120, damping: 18, mass: 0.6 });
+  // Ring: loose, well-overdamped spring — smooth lag, no oscillation
+  const ringX = useSpring(mouseX, { stiffness: 90, damping: 22, mass: 0.8 });
+  const ringY = useSpring(mouseY, { stiffness: 90, damping: 22, mass: 0.8 });
 
-  const [isPointer, setIsPointer]   = useState(false);
-  const [isVisible, setIsVisible]   = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
+  const [isPointer, setIsPointer] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only activate on desktop (pointer: fine = mouse)
-    const mq = window.matchMedia('(pointer: fine)');
-    if (!mq.matches) return;
+    // Only on desktop (pointer: fine = mouse)
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    let rafId: number;
 
     const onMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-      setIsVisible(true);
+      // Update motion values directly — no state, no re-render
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
+    };
 
-      // Detect if hovered element is interactive
-      const el = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
-      if (el) {
-        const interactive = el.closest(
-          'a, button, [role="button"], input, textarea, select, label, [data-cursor-hover], .cursor-pointer'
-        );
-        setIsPointer(!!interactive);
-      }
+    // Use mouseover (fires on element change) instead of checking elementFromPoint
+    // on every mousemove — much cheaper
+    const onOver = (e: MouseEvent) => {
+      const el = e.target as HTMLElement;
+      const interactive = !!el.closest(
+        'a, button, [role="button"], input, textarea, select, label, .cursor-pointer, [data-cursor-hover]'
+      );
+      setIsPointer(interactive);
     };
 
     const onLeave  = () => setIsVisible(false);
     const onEnter  = () => setIsVisible(true);
-    const onDown   = () => setIsClicking(true);
-    const onUp     = () => setIsClicking(false);
 
-    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mousemove', onMove, { passive: true });
+    document.addEventListener('mouseover', onOver, { passive: true });
     document.addEventListener('mouseleave', onLeave);
     document.addEventListener('mouseenter', onEnter);
-    document.addEventListener('mousedown', onDown);
-    document.addEventListener('mouseup', onUp);
 
     return () => {
       document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseover', onOver);
       document.removeEventListener('mouseleave', onLeave);
       document.removeEventListener('mouseenter', onEnter);
-      document.removeEventListener('mousedown', onDown);
-      document.removeEventListener('mouseup', onUp);
+      cancelAnimationFrame(rafId);
     };
-  }, [cursorX, cursorY]);
+  }, [mouseX, mouseY, isVisible]);
 
-  // SSR / mobile guard
   if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) {
     return null;
   }
 
   return (
     <>
-      {/* Outer ring — lags behind */}
+      {/* Outer ring — lags smoothly behind */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9995] rounded-full border"
         style={{
@@ -72,17 +71,26 @@ export function CustomCursor() {
           y: ringY,
           translateX: '-50%',
           translateY: '-50%',
-          opacity: isVisible ? 1 : 0,
-          width:  isPointer ? 44 : isClicking ? 22 : 32,
-          height: isPointer ? 44 : isClicking ? 22 : 32,
-          borderColor: isPointer ? 'rgba(255,43,43,0.9)' : 'rgba(255,255,255,0.4)',
+        }}
+        animate={{
+          width:  isPointer ? 42 : 30,
+          height: isPointer ? 42 : 30,
+          borderColor: isPointer ? 'rgba(255,43,43,0.9)' : 'rgba(255,255,255,0.35)',
           backgroundColor: isPointer ? 'rgba(255,43,43,0.08)' : 'transparent',
-          boxShadow: isPointer ? '0 0 16px rgba(255,43,43,0.3)' : 'none',
-          transition: 'width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease',
+          boxShadow: isPointer ? '0 0 14px rgba(255,43,43,0.25)' : 'none',
+          opacity: isVisible ? 1 : 0,
+        }}
+        transition={{
+          width: { duration: 0.25, ease: 'easeOut' },
+          height: { duration: 0.25, ease: 'easeOut' },
+          borderColor: { duration: 0.2 },
+          backgroundColor: { duration: 0.2 },
+          boxShadow: { duration: 0.2 },
+          opacity: { duration: 0.3 },
         }}
       />
 
-      {/* Inner dot — follows exactly */}
+      {/* Inner dot — near-instant tracking */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9996] rounded-full"
         style={{
@@ -90,12 +98,19 @@ export function CustomCursor() {
           y: dotY,
           translateX: '-50%',
           translateY: '-50%',
-          opacity: isVisible ? 1 : 0,
-          width:  isPointer ? 6 : isClicking ? 3 : 4,
-          height: isPointer ? 6 : isClicking ? 3 : 4,
+        }}
+        animate={{
+          width:  isPointer ? 5 : 4,
+          height: isPointer ? 5 : 4,
           backgroundColor: isPointer ? '#FF2B2B' : '#ffffff',
-          boxShadow: isPointer ? '0 0 8px #FF2B2B' : 'none',
-          transition: 'width 0.15s ease, height 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, opacity 0.3s ease',
+          boxShadow: isPointer ? '0 0 6px #FF2B2B' : 'none',
+          opacity: isVisible ? 1 : 0,
+        }}
+        transition={{
+          width: { duration: 0.2, ease: 'easeOut' },
+          height: { duration: 0.2, ease: 'easeOut' },
+          backgroundColor: { duration: 0.15 },
+          opacity: { duration: 0.3 },
         }}
       />
     </>
