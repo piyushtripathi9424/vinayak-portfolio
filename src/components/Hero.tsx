@@ -26,40 +26,34 @@ export function Hero() {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20, mass: 0.5 });
 
   // Background glow drifts DOWN (parallax depth — slower than scroll)
-  const glowY       = useTransform(smoothProgress, [0, 1], ['0%', '40%']);
-  const glowOpacity = useTransform(smoothProgress, [0, 0.6], [1, 0]);
+  const glowY    = useTransform(smoothProgress, [0, 1], ['0%', '40%']);
 
-  // Grid rises and fades
-  const gridY       = useTransform(smoothProgress, [0, 1], ['0%', '-15%']);
-  const gridOpacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
+  // Grid rises slightly
+  const gridY    = useTransform(smoothProgress, [0, 1], ['0%', '-15%']);
 
   // Content rises (foreground, slightly faster)
-  const contentY       = useTransform(smoothProgress, [0, 1], ['0%', '-20%']);
-  const contentOpacity = useTransform(smoothProgress, [0, 0.5], [1, 0]);
+  const contentY = useTransform(smoothProgress, [0, 1], ['0%', '-20%']);
 
   return (
     <section ref={containerRef} id="home" className="relative min-h-[100svh] flex items-center justify-center pt-24 pb-0 overflow-hidden">
 
       {/* Background glow — drifts down on scroll */}
       <motion.div
-        style={{ y: glowY, opacity: glowOpacity }}
+        style={{ y: glowY }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[800px] h-[500px] bg-primary/20 blur-[150px] rounded-[100%] pointer-events-none mix-blend-screen"
       />
-      <motion.div
-        style={{ opacity: glowOpacity }}
-        className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-primary/10 to-transparent blur-[80px] pointer-events-none mix-blend-screen opacity-50"
-      />
+      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-primary/10 to-transparent blur-[80px] pointer-events-none mix-blend-screen opacity-50" />
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
-      {/* Grid overlay — rises and fades on scroll */}
+      {/* Grid overlay — rises on scroll */}
       <motion.div
-        style={{ y: gridY, opacity: gridOpacity }}
+        style={{ y: gridY }}
         className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_70%,transparent_100%)]"
       />
 
       {/* Content — foreground parallax */}
       <motion.div
-        style={{ y: contentY, opacity: contentOpacity }}
+        style={{ y: contentY }}
         className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 text-center pb-16"
       >
 
