@@ -1,8 +1,11 @@
 import { motion } from 'motion/react';
 import { POSTERS } from '../data';
 import { Link } from 'react-router-dom';
+import { useLightbox } from '../contexts/LightboxContext';
 
 export function PosterGallery() {
+  const { openLightbox } = useLightbox();
+
   // Distribute posters across 3 cinematic layers
   const r1 = [POSTERS[0], POSTERS[1], POSTERS[2]];
   const r2 = [POSTERS[3], POSTERS[4], POSTERS[5]];
@@ -11,7 +14,6 @@ export function PosterGallery() {
   // Duplicate to ensure seamless continuous looping
   const row1Count = [...r1, ...r1, ...r1, ...r1];
   const row2Count = [...r2, ...r2, ...r2, ...r2];
-  const row3Count = [...r3, ...r3, ...r3, ...r3];
 
   return (
     <section id="posters" className="py-24 relative overflow-hidden bg-black">
@@ -49,8 +51,6 @@ export function PosterGallery() {
         <div className="absolute top-0 left-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 right-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-black via-black/70 to-transparent z-10 pointer-events-none" />
 
-
-
         {/* ==================== ROW 2: ARTISTIC MIDGROUND LAYER ==================== */}
         <div className="w-full overflow-hidden">
           <div className="flex gap-10 md:gap-12 w-max animate-[scroll-left_85s_linear_infinite] hover:[animation-play-state:paused] will-change-transform">
@@ -58,6 +58,7 @@ export function PosterGallery() {
               <motion.div
                 key={`p2-${idx}`}
                 whileHover={{ scale: 1.03, y: -4 }}
+                onClick={() => openLightbox(src, 'Poster', idx % r2.length, POSTERS)}
                 className="relative w-[150px] h-[212px] md:w-[250px] md:h-[353px] rounded-2xl overflow-hidden shadow-xl liquid-glass-standard group flex-shrink-0 cursor-pointer"
               >
                 <img
@@ -67,6 +68,12 @@ export function PosterGallery() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 border border-transparent group-hover:border-primary/20 rounded-2xl transition-colors duration-300 pointer-events-none" />
+                {/* Click hint */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -80,6 +87,7 @@ export function PosterGallery() {
                 key={`p1-${idx}`}
                 whileHover={{ scale: 1.05, y: -10 }}
                 transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                onClick={() => openLightbox(src, 'Poster', idx % r1.length, POSTERS)}
                 className="relative w-[200px] h-[282px] md:w-[320px] md:h-[451px] rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(255,43,43,0.15)] liquid-glass-strong group flex-shrink-0 cursor-pointer"
               >
                 <img
@@ -91,7 +99,7 @@ export function PosterGallery() {
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10 pointer-events-none">
                   <div className="translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                     <div className="w-8 h-[2px] bg-primary mb-2 shadow-[0_0_10px_#FF2B2B]" />
-                    <p className="text-white font-semibold uppercase tracking-widest text-xs">Cinematic Design</p>
+                    <p className="text-white font-semibold uppercase tracking-widest text-xs">Click to View</p>
                   </div>
                 </div>
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/40 rounded-2xl transition-colors duration-300 pointer-events-none z-20" />
@@ -101,6 +109,17 @@ export function PosterGallery() {
         </div>
 
       </div>
+
+      <style>{`
+        @keyframes scroll-left {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-25%, 0, 0); }
+        }
+        @keyframes scroll-right {
+          0% { transform: translate3d(-25%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
+      `}</style>
     </section>
   );
 }

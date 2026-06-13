@@ -6,6 +6,7 @@ import { PosterGallery } from '../components/PosterGallery';
 import { Features } from '../components/Features';
 import { Pricing } from '../components/Pricing';
 import { Process } from '../components/Process';
+import { FAQ } from '../components/FAQ';
 import { CTASection } from '../components/CTASection';
 import { Footer } from '../components/Footer';
 
@@ -21,9 +22,11 @@ export function HomePage() {
         <Features />
         <Pricing />
         <Process />
+        <FAQ />
         <CTASection />
       </main>
       <Footer />
     </>
   );
 }
+
