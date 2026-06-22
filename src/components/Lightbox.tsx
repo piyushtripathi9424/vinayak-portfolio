@@ -8,7 +8,7 @@ const CATEGORY_META = {
   Thumbnail: {
     badge: 'YouTube Thumbnail',
     description: 'Precision-engineered thumbnail designed to maximize click-through rate. Every element — lighting, text hierarchy, and focal composition — is strategically placed to stop the scroll and drive clicks.',
-    tags: ['CTR Optimized', 'YouTube Ready', '1280×720px'],
+    tags: ['CTR Optimized', 'YouTube Ready', '4K Resolution'],
   },
   Poster: {
     badge: 'Cinematic Poster',

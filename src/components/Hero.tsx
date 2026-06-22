@@ -123,9 +123,10 @@ export function Hero() {
         >
           <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
           <div className="text-sm sm:text-base md:text-2xl lg:text-3xl text-text-main/40 leading-relaxed font-medium text-center w-full max-w-[90vw] mx-auto overflow-hidden">
-            Helping <span className="text-text-main drop-shadow-md">top creators</span>, <span className="text-text-main drop-shadow-md">football pages</span>, and <span className="text-text-main drop-shadow-md">brands</span>
+            Helping <span className="text-text-main drop-shadow-md">top creators</span>, and <span className="text-text-main drop-shadow-md">brands</span>
             <br className="md:hidden" />
             {' '}
+            to{' '}
             <span className="inline md:inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ff8a8a] to-primary font-bold tracking-wide animate-gradient-x bg-[length:200%_auto]">
               dominate the feed
             </span>

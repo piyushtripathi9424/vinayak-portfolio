@@ -12,8 +12,7 @@ export const CONTACT = {
 
 export const NAV_LINKS = [
   { label: "Home", href: "/#home" },
-  { label: "Work", href: "/#work" },
-  { label: "Posters", href: "/#posters" },
+  { label: "Work", href: "/work" },
   { label: "Growth", href: "/#growth" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Process", href: "/#process" },
@@ -30,7 +29,7 @@ export const FAQ_ITEMS = [
   },
   {
     question: "What files do you deliver?",
-    answer: "You receive a high-resolution PNG/JPG optimized for YouTube (1280×720px), plus the source PSD/AI file upon request for premium packages."
+    answer: "You receive a full 4K high-resolution PNG/JPG optimized for YouTube, plus the source PSD/AI file upon request for premium packages."
   },
   {
     question: "Do you work with any YouTube niche?",
