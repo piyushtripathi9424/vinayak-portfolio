@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 export function CustomCursor() {
   // Raw motion values — updated directly from mousemove, zero re-renders
@@ -16,6 +17,7 @@ export function CustomCursor() {
 
   const [isPointer, setIsPointer] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const { isLightMode } = useTheme();
 
   useEffect(() => {
     // Only on desktop (pointer: fine = mouse)
@@ -62,7 +64,7 @@ export function CustomCursor() {
   }
 
   return (
-    <>
+    <div key={isLightMode ? 'light' : 'dark'}>
       {/* Outer ring — lags smoothly behind */}
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[9995] rounded-full border"
@@ -113,6 +115,6 @@ export function CustomCursor() {
           opacity: { duration: 0.3 },
         }}
       />
-    </>
+    </div>
   );
 }
