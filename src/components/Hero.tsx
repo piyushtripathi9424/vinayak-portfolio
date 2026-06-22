@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { useUI } from '../contexts/UIContext';
 import { ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import profilePic from '../logo/JAKE.png';
 
 const CAROUSEL_ICONS = [
@@ -16,6 +16,15 @@ const CAROUSEL_ICONS = [
 export function Hero() {
   const { openContactModal } = useUI();
   const containerRef = useRef<HTMLElement>(null);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Parallax: track scroll progress within this section
   const { scrollYProgress } = useScroll({
@@ -40,20 +49,20 @@ export function Hero() {
       {/* Background glow — drifts down on scroll */}
       <motion.div
         style={{ y: glowY }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[800px] h-[500px] bg-[var(--hero-bloom)] blur-[150px] rounded-[100%] pointer-events-none mix-blend-screen"
+        className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[800px] h-[500px] bg-[var(--hero-bloom)] blur-[150px] rounded-[100%] pointer-events-none mix-blend-screen"
       />
-      <div className="absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-[var(--hero-bloom-subtle)] to-transparent blur-[80px] pointer-events-none mix-blend-screen opacity-50" />
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
+      <div className="hidden md:block absolute top-0 inset-x-0 h-[500px] bg-gradient-to-b from-[var(--hero-bloom-subtle)] to-transparent blur-[80px] pointer-events-none mix-blend-screen opacity-50" />
+      <div className="hidden md:block absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
       {/* Grid overlay — rises on scroll */}
       <motion.div
-        style={{ y: gridY }}
-        className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_70%,transparent_100%)]"
+        style={isMobile ? {} : { y: gridY }}
+        className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_40%,#000_70%,transparent_100%)] will-change-transform"
       />
 
       {/* Content — foreground parallax */}
       <motion.div
-        style={{ y: contentY }}
+        style={isMobile ? {} : { y: contentY }}
         className="relative z-10 max-w-5xl mx-auto px-4 md:px-6 text-center pb-16"
       >
 
@@ -64,9 +73,9 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto mb-10 mt-12 group w-32 h-32 md:w-44 md:h-44"
         >
-          <div className="absolute inset-0 -m-6 rounded-full border border-primary/30 animate-[spin_10s_linear_infinite]" style={{ borderStyle: 'dashed' }} />
-          <div className="absolute inset-0 -m-3 rounded-full border border-text-main/10 animate-[spin_15s_linear_infinite_reverse]" />
-          <div className="absolute inset-0 rounded-full bg-[var(--hero-bloom-solid)] blur-[40px] mix-blend-screen opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute inset-0 -m-6 rounded-full border border-primary/30 animate-[spin_10s_linear_infinite] will-change-transform" style={{ borderStyle: 'dashed' }} />
+          <div className="absolute inset-0 -m-3 rounded-full border border-text-main/10 animate-[spin_15s_linear_infinite_reverse] will-change-transform" />
+          <div className="hidden md:block absolute inset-0 rounded-full bg-[var(--hero-bloom-solid)] blur-[40px] mix-blend-screen opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
           <div className="relative w-full h-full rounded-full overflow-hidden border border-text-main/20 shadow-[0_0_50px_var(--primary-glow)] bg-text-main/[0.02] backdrop-blur-md p-1">
             <div className="w-full h-full rounded-full overflow-hidden relative">
               <img
@@ -106,7 +115,7 @@ export function Hero() {
           <span className="text-[12vw] sm:text-7xl md:text-[110px] lg:text-[130px] text-gradient whitespace-nowrap">
             CRAFTING
           </span>
-          <span className="text-[12vw] sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-r from-[#FF2B2B] via-[#FF8A8A] to-[#FF2B2B] animate-gradient-x bg-[length:200%_auto] whitespace-nowrap">
+          <span className="text-[12vw] sm:text-7xl md:text-[110px] lg:text-[130px] text-transparent bg-clip-text bg-gradient-to-r from-[#FF2B2B] via-[#FF8A8A] to-[#FF2B2B] md:animate-gradient-x bg-[length:200%_auto] whitespace-nowrap">
             ELITE VISUALS
           </span>
           <span className="text-[12vw] sm:text-7xl md:text-[110px] lg:text-[130px] text-gradient whitespace-nowrap">
@@ -127,7 +136,7 @@ export function Hero() {
             <br className="md:hidden" />
             {' '}
             to{' '}
-            <span className="inline md:inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ff8a8a] to-primary font-bold tracking-wide animate-gradient-x bg-[length:200%_auto]">
+            <span className="inline md:inline-block text-transparent bg-clip-text bg-gradient-to-r from-primary via-[#ff8a8a] to-primary font-bold tracking-wide md:animate-gradient-x bg-[length:200%_auto]">
               dominate the feed
             </span>
             <br className="md:hidden" />
@@ -148,7 +157,7 @@ export function Hero() {
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
           }}
         >
-          <div className="flex w-max animate-infinite-scroll hover:[animation-play-state:paused]">
+          <div className="flex w-max animate-infinite-scroll hover:[animation-play-state:paused] will-change-transform">
             {[...CAROUSEL_ICONS, ...CAROUSEL_ICONS, ...CAROUSEL_ICONS, ...CAROUSEL_ICONS].map((icon, idx) => (
               <div
                 key={idx}

@@ -21,8 +21,15 @@ export function ThumbnailCarousel() {
   const springY = useSpring(mouseY, { stiffness: 80, damping: 25, mass: 0.6 });
 
   const [isHovered, setIsHovered] = useState(false);
+  const [isPointerFine, setIsPointerFine] = useState(true);
 
   useEffect(() => {
+    // Check if device supports fine pointer
+    const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+    setIsPointerFine(hasFinePointer);
+    
+    if (!hasFinePointer) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
@@ -53,21 +60,23 @@ export function ThumbnailCarousel() {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1, ease: "easeOut" }}
       className="py-24 relative overflow-hidden bg-background"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => isPointerFine && setIsHovered(true)}
+      onMouseLeave={() => isPointerFine && setIsHovered(false)}
     >
       {/* Dynamic Crimson Bloom Mouse Tracker */}
-      <motion.div
-        className="pointer-events-none absolute rounded-full bg-primary/20 blur-[120px] -translate-x-1/2 -translate-y-1/2 z-0 mix-blend-screen"
-        style={{
-          left: springX,
-          top: springY,
-          width: '500px',
-          height: '500px',
-          opacity: isHovered ? 1 : 0,
-        }}
-        transition={{ opacity: { duration: 0.5 } }}
-      />
+      {isPointerFine && (
+        <motion.div
+          className="pointer-events-none absolute rounded-full bg-primary/20 blur-[120px] -translate-x-1/2 -translate-y-1/2 z-0 mix-blend-screen"
+          style={{
+            left: springX,
+            top: springY,
+            width: '500px',
+            height: '500px',
+            opacity: isHovered ? 1 : 0,
+          }}
+          transition={{ opacity: { duration: 0.5 } }}
+        />
+      )}
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 mb-16 relative z-10 flex flex-col md:flex-row items-center md:items-end justify-between select-none">
         <div className="text-center md:text-left mb-6 md:mb-0">

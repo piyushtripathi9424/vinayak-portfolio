@@ -4,6 +4,8 @@ export function MouseGlow() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
@@ -11,6 +13,10 @@ export function MouseGlow() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) {
+    return null;
+  }
 
   return (
     <div 

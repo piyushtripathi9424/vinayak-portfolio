@@ -36,7 +36,7 @@ export default function App() {
         {showLoader && <LoadingScreen onComplete={handleLoaderComplete} />}
         <CustomCursor />
         <div className="min-h-screen bg-background text-text-main selection:bg-primary/30 selection:text-text-main relative">
-          <div className="fixed inset-0 bg-[radial-gradient(circle_at_top_right,_var(--hero-bloom)_0%,_transparent_50%),radial-gradient(circle_at_bottom_left,_var(--hero-bloom)_0%,_transparent_40%)] pointer-events-none z-0" />
+          <div className="hidden md:block fixed inset-0 bg-[radial-gradient(circle_at_top_right,_var(--hero-bloom)_0%,_transparent_50%),radial-gradient(circle_at_bottom_left,_var(--hero-bloom)_0%,_transparent_40%)] pointer-events-none z-0 will-change-transform" />
           <MouseGlow />
           <div className="relative z-10">
             <BrowserRouter>
