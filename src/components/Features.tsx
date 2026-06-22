@@ -14,13 +14,13 @@ export function Features() {
   return (
     <section className="py-24 relative z-10">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        
+
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-8 text-center md:text-left">
           <div className="max-w-2xl flex flex-col items-center md:items-start">
-            <div className="inline-block px-3 py-1 bg-white/5 border border-white/10 text-text-muted rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+            <div className="inline-block px-3 py-1 bg-text-main/5 border border-text-main/10 text-text-muted rounded-full text-xs font-bold uppercase tracking-widest mb-4">
               Advantage
             </div>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-white leading-tight">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-text-main leading-tight">
               Why Creators Work <br className="hidden md:block" />
               <span className="md:hidden"> </span>With <span className="text-primary text-glow">My Studio</span>
             </h2>
@@ -41,10 +41,10 @@ export function Features() {
               whileHover={{ y: -5 }}
               className="liquid-glass-standard p-8 rounded-2xl group transition-all box-glow"
             >
-              <div className="w-14 h-14 rounded-xl liquid-glass-standard flex items-center justify-center text-text-muted group-hover:text-primary group-hover:shadow-[0_0_20px_rgba(255,43,43,0.3)] transition-all mb-6">
+              <div className="w-14 h-14 rounded-xl liquid-glass-standard flex items-center justify-center text-text-muted group-hover:text-primary group-hover:shadow-[0_0_20px_var(--primary-glow)] transition-all mb-6">
                 {feat.icon}
               </div>
-              <h3 className="text-xl font-display font-bold text-white mb-3">
+              <h3 className="text-xl font-display font-bold text-text-main mb-3">
                 {feat.title}
               </h3>
               <p className="text-text-muted leading-relaxed">

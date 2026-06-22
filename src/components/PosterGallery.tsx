@@ -16,25 +16,24 @@ export function PosterGallery() {
   const row2Count = [...r2, ...r2, ...r2, ...r2];
 
   return (
-    <section id="posters" className="py-24 relative overflow-hidden bg-black">
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] pointer-events-none z-10" />
-      
+    <section id="posters" className="py-24 relative overflow-hidden bg-background">
+
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10 flex flex-col md:flex-row items-center md:items-end justify-between select-none mb-16">
         <div className="text-center md:text-left mb-6 md:mb-0">
           <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary rounded-full text-xs font-bold uppercase tracking-widest mb-4">
             Cinematic Art
           </div>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-text-main mb-6">
             Poster Work <span className="text-glow text-primary">Gallery</span>
           </h2>
           <p className="text-lg text-text-muted max-w-2xl mx-auto md:mx-0">
             Cinematic storytelling elements composed for high-impact presence and artistic branding.
           </p>
         </div>
-        
-        <Link 
+
+        <Link
           to="/work"
-          className="group relative inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white liquid-glass-strong rounded-full overflow-hidden hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,43,43,0.15)] hover:shadow-[0_0_30px_rgba(255,43,43,0.4)] border border-primary/30 hover:border-primary z-20"
+          className="group relative inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-text-main liquid-glass-strong rounded-full overflow-hidden hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_var(--primary-glow)] hover:shadow-[0_0_30px_var(--primary-glow-strong)] border border-primary/30 hover:border-primary z-20"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none" />
           <span className="relative flex items-center gap-2">
@@ -46,10 +45,13 @@ export function PosterGallery() {
         </Link>
       </div>
 
-      <div className="relative w-full overflow-hidden flex flex-col gap-8 md:gap-12 select-none">
-        {/* Side gradient limit filters */}
-        <div className="absolute top-0 left-0 bottom-0 w-24 md:w-64 bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 right-0 bottom-0 w-24 md:w-64 bg-gradient-to-l from-black via-black/70 to-transparent z-10 pointer-events-none" />
+      <div 
+        className="relative w-full overflow-hidden flex flex-col gap-8 md:gap-12 select-none"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)'
+        }}
+      >
 
         {/* ==================== ROW 2: ARTISTIC MIDGROUND LAYER ==================== */}
         <div className="w-full overflow-hidden">
@@ -70,8 +72,8 @@ export function PosterGallery() {
                 <div className="absolute inset-0 border border-transparent group-hover:border-primary/20 rounded-2xl transition-colors duration-300 pointer-events-none" />
                 {/* Click hint */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
+                  <div className="w-10 h-10 rounded-full bg-background/60 backdrop-blur-md border border-text-main/20 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-text-main" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
                   </div>
                 </div>
               </motion.div>
@@ -88,7 +90,7 @@ export function PosterGallery() {
                 whileHover={{ scale: 1.05, y: -10 }}
                 transition={{ type: "spring", stiffness: 220, damping: 20 }}
                 onClick={() => openLightbox(src, 'Poster', idx % r1.length, POSTERS)}
-                className="relative w-[200px] h-[282px] md:w-[320px] md:h-[451px] rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(255,43,43,0.15)] liquid-glass-strong group flex-shrink-0 cursor-pointer"
+                className="relative w-[200px] h-[282px] md:w-[320px] md:h-[451px] rounded-2xl overflow-hidden shadow-[0_0_40px_var(--primary-glow)] liquid-glass-strong group flex-shrink-0 cursor-pointer"
               >
                 <img
                   src={src}
@@ -96,10 +98,10 @@ export function PosterGallery() {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 animate-[pulse-slow_8s_ease-in-out_infinite]"
                   loading="lazy"
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10 pointer-events-none">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-10 pointer-events-none">
                   <div className="translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                     <div className="w-8 h-[2px] bg-primary mb-2 shadow-[0_0_10px_#FF2B2B]" />
-                    <p className="text-white font-semibold uppercase tracking-widest text-xs">Click to View</p>
+                    <p className="text-text-main font-semibold uppercase tracking-widest text-xs">Click to View</p>
                   </div>
                 </div>
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/40 rounded-2xl transition-colors duration-300 pointer-events-none z-20" />

@@ -30,9 +30,9 @@ const METRICS = [
 
 export function GrowthMetrics() {
   return (
-    <section id="growth" className="py-24 relative z-10 bg-charcoal/50 border-y border-white/5">
+    <section id="growth" className="py-24 relative z-10 bg-charcoal/50 border-y border-text-main/5">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        
+
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -47,7 +47,7 @@ export function GrowthMetrics() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-display font-bold text-white mb-6"
+            className="text-4xl md:text-5xl font-display font-bold text-text-main mb-6"
           >
             Built for <span className="text-glow text-primary">Growth</span>
           </motion.h2>
@@ -70,23 +70,23 @@ export function GrowthMetrics() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 * idx, duration: 0.5 }}
-              className="liquid-glass-standard p-8 rounded-2xl relative overflow-hidden group transition-colors hover:shadow-[0_0_40px_rgba(255,43,43,0.2)]"
+              className="liquid-glass-standard p-8 rounded-2xl relative overflow-hidden group transition-colors hover:shadow-[0_0_40px_var(--primary-glow)]"
             >
               {/* Top ambient glow */}
               <div className="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 blur-[40px] rounded-full group-hover:bg-primary/20 transition-colors" />
-              
+
               <div className="mb-6 w-12 h-12 rounded-xl liquid-glass-standard flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform">
                 {metric.icon}
               </div>
-              
+
               <div className="relative z-10">
-                <h3 className="text-4xl md:text-5xl font-display font-bold text-white mb-2 tracking-tight">
+                <h3 className="text-4xl md:text-5xl font-display font-bold text-text-main mb-2 tracking-tight">
                   {metric.value}
                 </h3>
-                <p className="text-lg font-medium text-white mb-1">{metric.label}</p>
+                <p className="text-lg font-medium text-text-main mb-1">{metric.label}</p>
                 <p className="text-sm text-text-muted">{metric.subtitle}</p>
               </div>
-              
+
               {/* Decorative mini chart line */}
               <div className="absolute bottom-0 left-0 w-full h-12 opacity-20 pointer-events-none hidden group-hover:block transition-all">
                 <svg viewBox="0 0 100 20" preserveAspectRatio="none" className="w-full h-full stroke-primary fill-none text-primary" strokeWidth="2" strokeLinecap="round">

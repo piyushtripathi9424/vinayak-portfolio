@@ -37,7 +37,7 @@ function MagneticCloseButton({ onClick }: { onClick: () => void }) {
       style={{ x: springX, y: springY }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="absolute top-3 left-1 p-2.5 rounded-full liquid-glass-standard border border-white/10 hover:border-primary/50 text-white/50 hover:text-white transition-colors duration-300 z-50 group hover:shadow-[0_0_15px_rgba(255,43,43,0.3)] bg-black/40 backdrop-blur-md"
+      className="absolute top-3 left-1 p-2.5 rounded-full liquid-glass-standard border border-text-main/10 hover:border-primary/50 text-text-main/50 hover:text-text-main transition-colors duration-300 z-50 group hover:shadow-[0_0_15px_var(--primary-glow)] bg-background/40 backdrop-blur-md"
     >
       <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
       <X className="w-5 h-5 relative z-10" />
@@ -84,12 +84,13 @@ export function ContactModal() {
               inset: 0,
               backdropFilter: 'blur(80px)',
               WebkitBackdropFilter: 'blur(80px)',
-              background: 'rgba(5, 5, 5, 1)',
+              background: 'var(--bg-color)',
+              opacity: 0.85,
               zIndex: 0,
             }}
           >
             {/* Ambient Radial Lighting on Backdrop */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,43,43,0.15)_0%,_transparent_60%)] pointer-events-none opacity-40" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--hero-bloom)_0%,_transparent_60%)] pointer-events-none opacity-40" />
           </motion.div>
 
           {/* Modal Content - animating its own opacity and CSS blur variable for super smooth entry */}
@@ -102,7 +103,7 @@ export function ContactModal() {
               '--glass-blur': { duration: 0.4, ease: "easeOut" },
               default: { type: 'spring', stiffness: 120, damping: 18, mass: 0.8 }
             }}
-            className="relative w-full max-w-lg liquid-glass-strong rounded-3xl p-8 overflow-hidden border border-white/10 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8),_0_0_30px_rgba(255,43,43,0.2)] bg-black/60 z-10"
+            className="relative w-full max-w-lg liquid-glass-strong rounded-3xl p-8 overflow-hidden border border-text-main/10 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.8),_0_0_30px_var(--primary-glow)] bg-background/60 z-10"
           >
             {/* Inner Glow Effects */}
             <motion.div
@@ -119,23 +120,23 @@ export function ContactModal() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: 'spring', delay: 0.1, stiffness: 200, damping: 20 }}
-                className="w-16 h-16 bg-gradient-to-br from-[#220000] to-primary/40 rounded-2xl mx-auto flex items-center justify-center mb-6 box-glow-strong border border-primary/50 relative group"
+                className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/40 rounded-2xl mx-auto flex items-center justify-center mb-6 box-glow-strong border border-primary/50 relative group"
               >
                 <div className="absolute inset-0 bg-primary/20 blur-md rounded-2xl pointer-events-none group-hover:bg-primary/40 transition-colors duration-500" />
-                <Mail className="w-8 h-8 text-primary drop-shadow-[0_0_8px_rgba(255,43,43,0.8)] relative z-10" />
+                <Mail className="w-8 h-8 text-primary drop-shadow-[0_0_8px_var(--primary-glow-strong)] relative z-10" />
               </motion.div>
-              <h2 className="text-3xl font-display font-bold text-white mb-3 tracking-tight">Let's Work Together</h2>
-              <p className="text-white/60 text-lg">Ready to drop jaws and build audiences?</p>
+              <h2 className="text-3xl font-display font-bold text-text-main mb-3 tracking-tight">Let's Work Together</h2>
+              <p className="text-text-main/60 text-lg">Ready to drop jaws and build audiences?</p>
             </div>
 
             <div className="space-y-4 relative z-10">
-              <div className="p-4 rounded-xl bg-black/80 border border-white/20 flex items-center justify-between shadow-inner shadow-black/50">
-                <span className="text-lg font-bold text-white truncate mr-4">
+              <div className="p-4 rounded-xl bg-background/80 border border-text-main/20 flex items-center justify-between shadow-[inset_0_2px_10px_var(--glass-shadow)]">
+                <span className="text-lg font-bold text-text-main truncate mr-4">
                   {CONTACT.email}
                 </span>
                 <button
                   onClick={handleCopy}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 hover:border-primary/50 text-white transition-all duration-300 group hover:shadow-[0_0_15px_rgba(255,43,43,0.2)] active:scale-95"
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg bg-text-main/10 hover:bg-text-main/20 border border-text-main/20 hover:border-primary/50 text-text-main transition-all duration-300 group hover:shadow-[0_0_15px_var(--primary-glow)] active:scale-95"
                 >
                   {copied ? (
                     <>
@@ -144,8 +145,8 @@ export function ContactModal() {
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4 text-white group-hover:text-primary transition-colors" />
-                      <span className="text-sm font-bold text-white">Copy</span>
+                      <Copy className="w-4 h-4 text-text-main group-hover:text-primary transition-colors" />
+                      <span className="text-sm font-bold text-text-main">Copy</span>
                     </>
                   )}
                 </button>
@@ -153,7 +154,7 @@ export function ContactModal() {
 
               <a
                 href={`mailto:${CONTACT.email}`}
-                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-lg hover:shadow-[0_0_30px_rgba(255,43,43,0.4)] active:scale-[0.98] transition-all duration-300 overflow-hidden relative group"
+                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-lg hover:shadow-[0_0_30px_var(--primary-glow-strong)] active:scale-[0.98] transition-all duration-300 overflow-hidden relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none" />
                 <Mail className="w-5 h-5 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]" />
@@ -165,7 +166,7 @@ export function ContactModal() {
                   href={CONTACT.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3.5 rounded-full bg-white/10 border border-white/20 text-white hover:border-primary/50 hover:bg-primary hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,43,43,0.3)] hover:scale-110 active:scale-95 group"
+                  className="p-3.5 rounded-full bg-text-main/10 border border-text-main/20 text-text-main hover:border-primary/50 hover:bg-primary hover:text-text-main transition-all duration-300 hover:shadow-[0_0_20px_var(--primary-glow)] hover:scale-110 active:scale-95 group"
                 >
                   <Instagram className="w-5 h-5 group-hover:rotate-6 transition-transform duration-300" />
                 </a>
@@ -173,7 +174,7 @@ export function ContactModal() {
                   href={CONTACT.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3.5 rounded-full bg-white/10 border border-white/20 text-white hover:border-primary/50 hover:bg-primary hover:text-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,43,43,0.3)] hover:scale-110 active:scale-95 group"
+                  className="p-3.5 rounded-full bg-text-main/10 border border-text-main/20 text-text-main hover:border-primary/50 hover:bg-primary hover:text-text-main transition-all duration-300 hover:shadow-[0_0_20px_var(--primary-glow)] hover:scale-110 active:scale-95 group"
                 >
                   <Twitter className="w-5 h-5 group-hover:rotate-6 transition-transform duration-300" />
                 </a>

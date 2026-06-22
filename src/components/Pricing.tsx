@@ -87,7 +87,7 @@ export function Pricing() {
           <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary rounded-full text-xs font-bold uppercase tracking-widest mb-4">
             Investment
           </div>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-text-main mb-6">
             Choose Your <span className="text-primary text-glow">Creative Package</span>
           </h2>
           <p className="text-lg text-text-muted max-w-2xl mx-auto">
@@ -166,12 +166,12 @@ export function Pricing() {
                               top: '50%',
                               transform: 'translateY(-50%)',
                               height: '3px',
-                              background: '#0E0E0E',
+                              background: 'var(--charcoal-color)',
                               zIndex: -1,
                             }}
                           />
                           <div
-                            className="bg-primary text-white font-bold text-sm tracking-widest uppercase rounded-full shadow-[0_0_20px_rgba(255,43,43,0.5)] whitespace-nowrap"
+                            className="bg-primary text-text-main font-bold text-sm tracking-widest uppercase rounded-full shadow-[0_0_20px_var(--primary-glow-strong)] whitespace-nowrap"
                             style={{ padding: '6px 18px' }}
                           >
                             Most Popular
@@ -182,7 +182,7 @@ export function Pricing() {
                       <div className="mb-6">
                         <h3 className="text-xl font-display font-semibold text-text-muted mb-2">{pkg.title}</h3>
                         <div className="flex items-end gap-2 mb-2">
-                          <span className="text-4xl md:text-5xl font-display font-bold text-white">{pkg.price}</span>
+                          <span className="text-4xl md:text-5xl font-display font-bold text-text-main">{pkg.price}</span>
                         </div>
                         {pkg.subtitle && (
                           <p className="text-sm font-medium text-primary">{pkg.subtitle}</p>
@@ -209,8 +209,8 @@ export function Pricing() {
                         tabIndex={isCenter ? 0 : -1}
                         className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
                           isCenter 
-                            ? 'liquid-glass-btn text-white' 
-                            : 'liquid-glass-standard text-white disabled:opacity-50'
+                            ? 'liquid-glass-btn text-text-main' 
+                            : 'liquid-glass-standard text-text-main disabled:opacity-50'
                         }`}
                       >
                         Contact Me
@@ -226,13 +226,13 @@ export function Pricing() {
           <div className="absolute top-1/2 -translate-y-1/2 w-full max-w-[1200px] flex justify-between px-2 md:px-8 pointer-events-none z-40">
             <button
               onClick={prevSlide}
-              className="pointer-events-auto w-14 h-14 rounded-full liquid-glass-standard flex items-center justify-center text-white hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
+              className="pointer-events-auto w-14 h-14 rounded-full liquid-glass-standard flex items-center justify-center text-text-main hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="pointer-events-auto w-14 h-14 rounded-full liquid-glass-standard flex items-center justify-center text-white hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
+              className="pointer-events-auto w-14 h-14 rounded-full liquid-glass-standard flex items-center justify-center text-text-main hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
             >
               <ChevronRight className="w-6 h-6" />
             </button>

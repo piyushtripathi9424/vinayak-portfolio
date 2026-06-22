@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 const LETTERS_NAME = 'VINAYAK PANDEY'.split('');
-const LETTERS_SUB  = 'VISUAL STUDIO'.split('');
+const LETTERS_SUB = 'VISUAL STUDIO'.split('');
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -29,7 +29,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       {phase !== 'exit' ? (
         <motion.div
           key="loader"
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#050505] overflow-hidden"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-background overflow-hidden"
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -42,7 +42,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           />
 
           {/* Grid overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_60%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_60%,transparent_100%)]" />
 
           <div className="relative z-10 text-center select-none">
             {/* Sweeping red line */}
@@ -59,9 +59,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
               {LETTERS_NAME.map((char, i) => (
                 <motion.span
                   key={i}
-                  className={`font-display font-extrabold tracking-[0.15em] text-4xl md:text-6xl ${
-                    char === ' ' ? 'w-4 md:w-8' : 'text-white'
-                  }`}
+                  className={`font-display font-extrabold tracking-[0.15em] text-4xl md:text-6xl ${char === ' ' ? 'w-4 md:w-8' : 'text-text-main'
+                    }`}
                   initial={{ y: 80, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{
@@ -87,9 +86,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
               {LETTERS_SUB.map((char, i) => (
                 <motion.span
                   key={i}
-                  className={`font-sans font-semibold tracking-[0.35em] text-xs md:text-sm text-primary/80 uppercase ${
-                    char === ' ' ? 'w-2 md:w-3' : ''
-                  }`}
+                  className={`font-sans font-semibold tracking-[0.35em] text-xs md:text-sm text-primary/80 uppercase ${char === ' ' ? 'w-2 md:w-3' : ''
+                    }`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
@@ -105,7 +103,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
             {/* Loading progress bar */}
             <motion.div
-              className="mt-12 mx-auto h-[2px] bg-white/5 rounded-full overflow-hidden"
+              className="mt-12 mx-auto h-[2px] bg-text-main/5 rounded-full overflow-hidden"
               style={{ width: '120px' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -126,7 +124,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
               <>
                 <motion.div
                   key="left"
-                  className="absolute inset-y-0 left-0 w-1/2 bg-[#050505] origin-right z-20"
+                  className="absolute inset-y-0 left-0 w-1/2 bg-background origin-right z-20"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   exit={{ scaleX: 0 }}
@@ -134,7 +132,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
                 />
                 <motion.div
                   key="right"
-                  className="absolute inset-y-0 right-0 w-1/2 bg-[#050505] origin-left z-20"
+                  className="absolute inset-y-0 right-0 w-1/2 bg-background origin-left z-20"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   exit={{ scaleX: 0 }}

@@ -46,7 +46,7 @@ export function Process() {
           transform: 'translate(-50%, -50%)',
           width: '600px',
           height: '300px',
-          background: 'radial-gradient(ellipse, rgba(255,43,43,0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse, var(--hero-bloom) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -61,8 +61,8 @@ export function Process() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
-            The <span className="text-primary text-glow">Workflow</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-text-main mb-4">
+            The <span className="text-primary text-glow" style={{ textShadow: '0 0 30px var(--text-glow)' }}>Workflow</span>
           </h2>
           <p className="text-base md:text-lg text-text-muted max-w-xl mx-auto leading-relaxed">
             A streamlined, premium process built for efficiency and elite results.
@@ -140,7 +140,7 @@ export function Process() {
 
                 {/* Title */}
                 <h3
-                  className="font-display font-bold text-white mb-2"
+                  className="font-display font-bold text-text-main mb-2"
                   style={{ fontSize: '16px', letterSpacing: '-0.01em' }}
                 >
                   {step.title}
@@ -158,7 +158,7 @@ export function Process() {
                     style={{
                       width: '1px',
                       height: '32px',
-                      background: 'linear-gradient(180deg, rgba(255,43,43,0.5) 0%, rgba(255,43,43,0.05) 100%)',
+                      background: 'linear-gradient(180deg, var(--primary-glow-strong) 0%, var(--primary-glow) 100%)',
                     }}
                   />
                 )}

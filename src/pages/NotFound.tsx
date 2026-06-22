@@ -10,8 +10,8 @@ export function NotFound() {
     <div className="min-h-screen bg-background flex items-center justify-center relative overflow-hidden">
 
       {/* Background atmosphere */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,_rgba(255,43,43,0.08)_0%,_transparent_60%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,_var(--hero-bloom)_0%,_transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_60%,transparent_100%)]" />
 
       <div className="relative z-10 text-center px-4 max-w-2xl mx-auto">
 
@@ -25,7 +25,7 @@ export function NotFound() {
           <span
             className="font-display font-extrabold text-[25vw] sm:text-[180px] leading-none text-transparent bg-clip-text"
             style={{
-              backgroundImage: 'linear-gradient(180deg, rgba(255,43,43,0.15) 0%, rgba(255,43,43,0.04) 100%)',
+              backgroundImage: 'linear-gradient(180deg, var(--primary-glow) 0%, var(--primary-glow) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
@@ -39,7 +39,7 @@ export function NotFound() {
               backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 0 60px rgba(255,43,43,0.3))',
+              filter: 'drop-shadow(0 0 60px var(--primary-glow))',
             }}
           >
             404
@@ -59,7 +59,7 @@ export function NotFound() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <h1 className="text-2xl md:text-4xl font-display font-bold text-white mb-4">
+          <h1 className="text-2xl md:text-4xl font-display font-bold text-text-main mb-4">
             Lost in the <span className="text-primary text-glow">Feed?</span>
           </h1>
           <p className="text-text-muted text-base md:text-lg leading-relaxed mb-10 max-w-md mx-auto">
@@ -76,7 +76,7 @@ export function NotFound() {
         >
           <Link
             to="/"
-            className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white liquid-glass-btn overflow-hidden text-sm"
+            className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-text-main liquid-glass-btn overflow-hidden text-sm"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
             <Home className="w-4 h-4 relative" />
@@ -85,7 +85,7 @@ export function NotFound() {
 
           <button
             onClick={openContactModal}
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-text-muted liquid-glass-standard hover:text-white hover:border-primary/40 transition-all text-sm"
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-text-muted liquid-glass-standard hover:text-text-main hover:border-primary/40 transition-all text-sm"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             Start a Project

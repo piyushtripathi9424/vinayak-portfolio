@@ -40,8 +40,8 @@ export function CustomCursor() {
       setIsPointer(interactive);
     };
 
-    const onLeave  = () => setIsVisible(false);
-    const onEnter  = () => setIsVisible(true);
+    const onLeave = () => setIsVisible(false);
+    const onEnter = () => setIsVisible(true);
 
     document.addEventListener('mousemove', onMove, { passive: true });
     document.addEventListener('mouseover', onOver, { passive: true });
@@ -73,11 +73,11 @@ export function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          width:  isPointer ? 42 : 30,
+          width: isPointer ? 42 : 30,
           height: isPointer ? 42 : 30,
-          borderColor: isPointer ? 'rgba(255,43,43,0.9)' : 'rgba(255,255,255,0.35)',
-          backgroundColor: isPointer ? 'rgba(255,43,43,0.08)' : 'transparent',
-          boxShadow: isPointer ? '0 0 14px rgba(255,43,43,0.25)' : 'none',
+          borderColor: isPointer ? 'var(--primary-glow-strong)' : 'var(--cursor-ring)',
+          backgroundColor: isPointer ? 'var(--primary-glow)' : 'transparent',
+          boxShadow: isPointer ? '0 0 14px var(--primary-glow)' : 'none',
           opacity: isVisible ? 1 : 0,
         }}
         transition={{
@@ -100,9 +100,9 @@ export function CustomCursor() {
           translateY: '-50%',
         }}
         animate={{
-          width:  isPointer ? 5 : 4,
+          width: isPointer ? 5 : 4,
           height: isPointer ? 5 : 4,
-          backgroundColor: isPointer ? '#FF2B2B' : '#ffffff',
+          backgroundColor: isPointer ? '#FF2B2B' : 'var(--cursor-dot)',
           boxShadow: isPointer ? '0 0 6px #FF2B2B' : 'none',
           opacity: isVisible ? 1 : 0,
         }}
