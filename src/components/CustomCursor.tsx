@@ -16,7 +16,7 @@ export function CustomCursor() {
   const ringY = useSpring(mouseY, { stiffness: 90, damping: 22, mass: 0.8 });
 
   const [isPointer, setIsPointer] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const { isLightMode } = useTheme();
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export function CustomCursor() {
       document.removeEventListener('mouseenter', onEnter);
       cancelAnimationFrame(rafId);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY]);
 
   if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) {
     return null;
