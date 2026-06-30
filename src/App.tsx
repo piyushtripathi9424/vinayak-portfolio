@@ -7,7 +7,6 @@ import { useState, useCallback } from 'react';
 import { UIProvider } from './contexts/UIContext';
 import { LightboxProvider } from './contexts/LightboxContext';
 import { MouseGlow } from './components/MouseGlow';
-import { CustomCursor } from './components/CustomCursor';
 import { ContactModal } from './components/ContactModal';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Lightbox } from './components/Lightbox';
@@ -34,7 +33,6 @@ export default function App() {
     <UIProvider>
       <LightboxProvider>
         {showLoader && <LoadingScreen onComplete={handleLoaderComplete} />}
-        <CustomCursor />
         <div className="min-h-screen bg-background text-text-main selection:bg-primary/30 selection:text-text-main relative">
           <div className="hidden md:block fixed inset-0 bg-[radial-gradient(circle_at_top_right,_var(--hero-bloom)_0%,_transparent_50%),radial-gradient(circle_at_bottom_left,_var(--hero-bloom)_0%,_transparent_40%)] pointer-events-none z-0 will-change-transform" />
           <MouseGlow />

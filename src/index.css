@@ -102,15 +102,7 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Hide default cursor on desktop — custom cursor handles it */
-@media (pointer: fine) {
 
-  *,
-  *::before,
-  *::after {
-    cursor: none !important;
-  }
-}
 
 h1,
 h2,

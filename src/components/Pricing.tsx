@@ -18,7 +18,7 @@ const PACKAGES = [
   },
   {
     title: "Thumbnail Package",
-    price: "$250",
+    price: "$200",
     subtitle: "30 Thumbnails",
     features: [
       "30 premium thumbnails",
@@ -95,8 +95,9 @@ export function Pricing() {
           </p>
         </div>
 
+        {/* Mobile / Tablet Carousel */}
         <div 
-          className="relative w-full max-w-6xl mx-auto h-[650px] flex items-center justify-center perspective-[2000px] touch-pan-y"
+          className="lg:hidden relative w-full h-[650px] flex items-center justify-center perspective-[2000px] touch-pan-y"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -121,7 +122,7 @@ export function Pricing() {
                     className={`absolute w-full max-w-sm md:max-w-md ${isCenter ? 'cursor-default pointer-events-auto' : 'cursor-pointer pointer-events-auto'}`}
                     initial={false}
                     animate={{
-                      scale: isCenter ? 1.08 : 0.82,
+                      scale: isCenter ? 1.05 : 0.82,
                       x: isCenter ? '0%' : isLeft ? '-105%' : '105%',
                       z: isCenter ? 50 : 0,
                       opacity: isCenter ? 1 : 0.4,
@@ -139,7 +140,7 @@ export function Pricing() {
                       if (isRight) nextSlide();
                     }}
                   >
-                    <div className={`relative rounded-3xl p-8 lg:p-10 transition-colors duration-700 ${
+                    <div className={`relative rounded-3xl p-8 transition-colors duration-700 h-full flex flex-col ${
                       isCenter 
                         ? 'liquid-glass-strong' 
                         : 'liquid-glass-standard'
@@ -157,7 +158,6 @@ export function Pricing() {
                             justifyContent: 'center',
                           }}
                         >
-                          {/* Solid bg block to mask the card border line */}
                           <div
                             style={{
                               position: 'absolute',
@@ -182,7 +182,7 @@ export function Pricing() {
                       <div className="mb-6">
                         <h3 className="text-xl font-display font-semibold text-text-muted mb-2">{pkg.title}</h3>
                         <div className="flex items-end gap-2 mb-2">
-                          <span className="text-4xl md:text-5xl font-display font-bold text-text-main">{pkg.price}</span>
+                          <span className="text-4xl font-display font-bold text-text-main">{pkg.price}</span>
                         </div>
                         {pkg.subtitle && (
                           <p className="text-sm font-medium text-primary">{pkg.subtitle}</p>
@@ -192,7 +192,7 @@ export function Pricing() {
                         )}
                       </div>
 
-                      <div className="space-y-4 mb-8 min-h-[220px]">
+                      <div className="space-y-4 mb-8 flex-1">
                         {pkg.features.map((feat, i) => (
                           <div key={i} className="flex items-start gap-3 text-left">
                             <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
@@ -207,7 +207,7 @@ export function Pricing() {
                           if (isCenter) openContactModal();
                         }}
                         tabIndex={isCenter ? 0 : -1}
-                        className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
+                        className={`w-full py-4 rounded-xl font-bold text-lg transition-all mt-auto ${
                           isCenter 
                             ? 'liquid-glass-btn text-text-main' 
                             : 'liquid-glass-standard text-text-main disabled:opacity-50'
@@ -223,20 +223,85 @@ export function Pricing() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="absolute top-1/2 -translate-y-1/2 w-full max-w-[1200px] flex justify-between px-2 md:px-8 pointer-events-none z-40">
+          <div className="absolute top-1/2 -translate-y-1/2 w-full max-w-[1200px] flex justify-between px-2 pointer-events-none z-40">
             <button
               onClick={prevSlide}
-              className="pointer-events-auto w-14 h-14 rounded-full liquid-glass-standard flex items-center justify-center text-text-main hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
+              className="pointer-events-auto w-12 h-12 rounded-full liquid-glass-standard flex items-center justify-center text-text-main hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="pointer-events-auto w-14 h-14 rounded-full liquid-glass-standard flex items-center justify-center text-text-main hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
+              className="pointer-events-auto w-12 h-12 rounded-full liquid-glass-standard flex items-center justify-center text-text-main hover:scale-110 hover:border-primary transition-all duration-300 shadow-lg"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
           </div>
+        </div>
+
+        {/* Desktop Grid */}
+        <div className="hidden lg:grid grid-cols-3 gap-6 xl:gap-8 max-w-6xl mx-auto relative z-10 items-stretch">
+          {/* Background Effects for grid */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] max-w-[600px] h-[500px] bg-primary/10 blur-[100px] rounded-full pointer-events-none transition-all duration-700 opacity-30" />
+
+          {PACKAGES.map((pkg, idx) => {
+            const isCenter = pkg.popular;
+            
+            return (
+              <div 
+                key={idx} 
+                className={`relative flex flex-col rounded-3xl p-8 xl:p-10 transition-colors duration-700 ${
+                  isCenter 
+                    ? 'liquid-glass-strong border-2 border-primary scale-[1.03] shadow-[0_0_40px_rgba(112,0,255,0.15)] z-20' 
+                    : 'liquid-glass-standard z-10'
+                }`}
+              >
+                {isCenter && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 flex items-center justify-center">
+                    <div
+                      className="bg-primary text-text-main font-bold text-sm tracking-widest uppercase rounded-full shadow-[0_0_20px_var(--primary-glow-strong)] whitespace-nowrap"
+                      style={{ padding: '6px 20px' }}
+                    >
+                      Best Deal
+                    </div>
+                  </div>
+                )}
+                
+                <div className="mb-6 mt-2">
+                  <h3 className="text-xl font-display font-semibold text-text-muted mb-2">{pkg.title}</h3>
+                  <div className="flex items-end gap-2 mb-2">
+                    <span className="text-4xl xl:text-5xl font-display font-bold text-text-main">{pkg.price}</span>
+                  </div>
+                  {pkg.subtitle && (
+                    <p className="text-sm font-medium text-primary">{pkg.subtitle}</p>
+                  )}
+                  {pkg.desc && (
+                    <p className="text-sm text-text-muted mt-4 italic">"{pkg.desc}"</p>
+                  )}
+                </div>
+
+                <div className="space-y-4 mb-8 flex-1">
+                  {pkg.features.map((feat, i) => (
+                    <div key={i} className="flex items-start gap-3 text-left">
+                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span className="text-text-main font-medium leading-relaxed">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => openContactModal()}
+                  className={`w-full py-4 rounded-xl font-bold text-lg transition-all mt-auto ${
+                    isCenter 
+                      ? 'bg-primary text-text-main shadow-[0_0_20px_var(--primary-glow-strong)] hover:scale-105' 
+                      : 'liquid-glass-standard text-text-main hover:border-primary/50'
+                  }`}
+                >
+                  Contact Me
+                </button>
+              </div>
+            );
+          })}
         </div>
 
       </div>
