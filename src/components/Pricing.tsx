@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 const PACKAGES = [
   {
     title: "Single Thumbnail",
-    price: "$10–$50",
+    price: "$10–$30",
     features: [
       "1 custom thumbnail",
       "2 revisions included",
@@ -18,7 +18,7 @@ const PACKAGES = [
   },
   {
     title: "Thumbnail Package",
-    price: "$200",
+    price: "$150",
     subtitle: "30 Thumbnails",
     features: [
       "30 premium thumbnails",
